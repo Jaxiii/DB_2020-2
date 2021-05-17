@@ -320,7 +320,7 @@ INSERT INTO fornecedor (cnpj, nome) VALUES ('1039394', 'Pfizer');
 INSERT INTO fornecedor (cnpj, nome) VALUES ('4857667', 'Moderna');
 INSERT INTO fornecedor (cnpj, nome) VALUES ('4757583', 'Astrazeneca');
 INSERT INTO fornecedor (cnpj, nome) VALUES ('4957472', 'Johnson & Johnson');
-INSERT INTO fornecedor (cnpj, nome) VALUES ('9274656', 'Butantan');
+INSERT INTO fornecedor (cnpj, nome) VALUES ('9274656', ' ');
 INSERT INTO fornecedor (cnpj, nome) VALUES ('3857574', 'Fiocruz');
 INSERT INTO fornecedor (cnpj, nome) VALUES ('5637489', 'Novartis');
 INSERT INTO fornecedor (cnpj, nome) VALUES ('2945775', 'Sinovac Biotech');
@@ -386,8 +386,18 @@ INSERT INTO aplicacao(data_aplicacao, aplicado, aplicador_cpf, aplicador_registr
 INSERT INTO aplicacao(data_aplicacao, aplicado, aplicador_cpf, aplicador_registro, vacina_lote,vacina_fabricante) VALUES ('04/04/2021', '123123123', '333777773', '010101', '00234', '4757583');
 INSERT INTO aplicacao(data_aplicacao, aplicado, aplicador_cpf, aplicador_registro, vacina_lote,vacina_fabricante) VALUES ('04/05/2021', '987654321', '0404040404', '040404', '00034', '1039394');
 
+CREATE VIEW idadeDosVacinado
+ AS SELECT M.*
+	FROM cidadao M
+	WHERE data_nascimento < '1985-03-01';
 
+CREATE PROCEDURE grupoDeRisco()
+LANGUAGE SQL
+AS $$
+SELECT cpf FROM cidadao WHERE data_nascimento < '1980-12-12';
+$$;
 
+CALL grupoDeRisco();
 
 
 
